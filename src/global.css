@@ -3,9 +3,15 @@
 @theme {
   --font-fascinate: "Fascinate", cursive;
   --font-geist: "Geist", sans-serif;
+  --color-background: #121212;
+  --color-border: #27272a;
+  --color-primary: #03e3b8;
+  --color-secondary: #1f1f1f;
 }
 
-body {
-  background-color: #121212;
-  font-family: 'Geist', sans-serif;
+@layer base {
+  body {
+    background-color: var(--color-background);
+    font-family: var(--font-geist);
+  }
 }
