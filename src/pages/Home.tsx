@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Clock, GalleryVerticalEnd, Images, Star, Upload, Wallpaper } from "lucide-react";
+import { Clock, Images, Star, Upload } from "lucide-react";
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
               to={"/wallpapers"}
               className="w-30 h-30 bg-[#181818]/70 p-4 rounded-md border border-[#2a2a2a] shadow-md shadow-black/20 flex flex-col justify-center items-center gap-2 text-[#B4B4B4] hover:text-[#03e3b8] transition-colors duration-200 font-medium"
             >
-              <GalleryVerticalEnd size={26} />
+              <Images size={26} />
               Wallpapers
             </Link>
             <Link
