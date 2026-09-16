@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@theme {
+  --font-fascinate: "Fascinate", cursive;
+  --font-geist: "Geist", sans-serif;
+}
+
+body {
+  background-color: #121212;
+  font-family: 'Geist', sans-serif;
+}
