@@ -11,6 +11,7 @@ import Register from "./pages/(auth)/Register.tsx";
 import Login from "./pages/(auth)/Login.tsx";
 import "@fontsource/fascinate";
 import '@fontsource/geist/400.css';
+import '@fontsource/geist/500.css';
 import '@fontsource/geist/600.css';
 import '@fontsource/geist/700.css';
 
