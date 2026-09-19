@@ -30,3 +30,11 @@ export type WallpaperResponse = {
   authorName: string;
   createdAt: string;
 };
+
+export type WallpaperSummaryResponse = {
+  id: string;
+  shortId: string;
+  thumbUrl: string;
+  width: number;
+  height: number;
+};
