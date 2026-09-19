@@ -1,9 +1,10 @@
 import { Eye, EyeOff, type LucideIcon } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useState, type ComponentProps } from "react";
+import Label from "./Label";
 
 type InputFieldProps = ComponentProps<"input"> & {
-  label: string;
+  label?: string;
   LeftIcon?: LucideIcon;
   isPassword?: boolean;
   error?: string;
@@ -24,9 +25,7 @@ export default function InputField({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-zinc-300 font-medium text-[15px]">
-        {label}
-      </label>
+      {label && <Label label={label} />}
 
       <div className="relative flex items-center">
         {LeftIcon && (
