@@ -1,4 +1,4 @@
-import ImageDrop from "@/components/ImageDrop";
+import ImageDrop from "@/features/wallpaper/components/ImageDrop";
 import Select from "@/components/Select";
 import Label from "@/components/Label";
 import { Loader2 } from "lucide-react";
@@ -99,7 +99,7 @@ export default function WallpaperUploadForm() {
       </div>
 
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? <Loader2 className="animate-spin" /> : "Entrar"}
+        {isSubmitting ? <Loader2 className="animate-spin" /> : "Enviar"}
       </Button>
     </form>
   );

@@ -1,6 +1,6 @@
 import { Check, ImageIcon, UploadIcon, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../../lib/utils";
 
 type ImageDropzoneProps = {
   file: File | null;
