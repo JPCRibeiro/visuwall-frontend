@@ -1,9 +1,7 @@
-import { useState } from "react";
 import ImageDrop from "@/components/ImageDrop";
 import Select from "@/components/Select";
 import Label from "@/components/Label";
-import InputField from "@/components/InputField";
-import { Loader2, Plus, X } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useUploadWallpaper } from "../api/queries";
 import { Controller, useForm } from "react-hook-form";
 import {
@@ -13,17 +11,14 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/Button";
 import { categories } from "@/lib/constants/categories";
-import { Badge } from "@/components/Badge";
+import { TagsInput } from "@/components/TagsInput";
 
 export default function WallpaperUploadForm() {
   const upload = useUploadWallpaper();
-  const [tagInput, setTagInput] = useState("");
 
   const {
     control,
     handleSubmit,
-    setValue,
-    watch,
     resetField,
     reset,
     formState: { errors, isSubmitting },
@@ -32,23 +27,6 @@ export default function WallpaperUploadForm() {
     defaultValues: { tags: [] },
   });
 
-  const tags = watch("tags") ?? [];
-
-  const addTag = () => {
-    const value = tagInput.trim().toLowerCase();
-    if (!value || tags.includes(value)) return;
-    setValue("tags", [...tags, value], { shouldValidate: true });
-    setTagInput("");
-  };
-
-  const removeTag = (tag: string) => {
-    setValue(
-      "tags",
-      tags.filter((t) => t !== tag),
-      { shouldValidate: true },
-    );
-  };
-
   const onSubmit = async (data: WallpaperUploadFormType) => {
     await upload.mutateAsync({
       file: data.file,
@@ -56,7 +34,6 @@ export default function WallpaperUploadForm() {
       tags: data.tags,
     });
     reset();
-    setTagInput("");
   };
 
   const serverError =
@@ -109,42 +86,13 @@ export default function WallpaperUploadForm() {
       </div>
       <div className="flex flex-col gap-2">
         <Label label="Tags (Opcional)" />
-        <div className="flex gap-2">
-          <div className="flex-1">
-            <InputField
-              placeholder="Adicionar tags"
-              value={tagInput}
-              onChange={(e) => setTagInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  addTag();
-                }
-              }}
-            />
-          </div>
-          <button
-            type="button"
-            onClick={addTag}
-            className="h-12 px-4 bg-zinc-800/50 hover:bg-zinc-700 rounded-md border border-zinc-700/50"
-          >
-            <Plus className="w-4 h-4" color="white" />
-          </button>
-        </div>
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-1">
-            {tags.map((tag) => (
-              <Badge
-                key={tag}
-                className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700 cursor-pointer px-3 py-1"
-                onClick={() => removeTag(tag)}
-              >
-                {tag}
-                <X className="w-3 h-3 ml-2" strokeWidth={3} />
-              </Badge>
-            ))}
-          </div>
-        )}
+        <Controller
+          control={control}
+          name="tags"
+          render={({ field }) => (
+            <TagsInput value={field.value ?? []} onChange={field.onChange} />
+          )}
+        />
         {errors.tags && (
           <p className="text-sm text-red-400">{errors.tags.message}</p>
         )}
