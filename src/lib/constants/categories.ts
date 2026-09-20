@@ -1,6 +1,6 @@
 import type { Category } from "@/types";
 
-const categoryLabels: Record<Category, string> = {
+export const categoryLabels: Record<Category, string> = {
   GENERAL: "Geral",
   ANIME: "Anime",
   PERSON: "Pessoas",
