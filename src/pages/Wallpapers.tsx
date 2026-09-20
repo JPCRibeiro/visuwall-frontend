@@ -4,7 +4,7 @@ import { WallpaperGallery } from "@/features/wallpaper/components/WallpaperGalle
 
 export default function WallpapersPage() {
   return (
-    <div className="gap-4 flex flex-col pb-8">
+    <div className="gap-4 flex flex-col pb-8 mt-16">
       <PageTitle
         Icon={Images}
         title="Wallpapers"

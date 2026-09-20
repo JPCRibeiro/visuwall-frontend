@@ -5,15 +5,13 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App.tsx";
 import Home from "./pages/Home.tsx";
 import Wallpapers from "./pages/Wallpapers.tsx";
-import Favorites from "./pages/(protected)/Favorites.tsx";
 import Upload from "./pages/(protected)/Upload.tsx";
-import Register from "./pages/(auth)/Register.tsx";
-import Login from "./pages/(auth)/Login.tsx";
 import "@fontsource/fascinate";
-import '@fontsource/geist/400.css';
-import '@fontsource/geist/500.css';
-import '@fontsource/geist/600.css';
-import '@fontsource/geist/700.css';
+import "@fontsource/geist/400.css";
+import "@fontsource/geist/500.css";
+import "@fontsource/geist/600.css";
+import "@fontsource/geist/700.css";
+import WallpaperDetailPage from "./pages/WallpaperDetail.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +19,14 @@ const router = createBrowserRouter([
     Component: App,
     children: [
       { index: true, Component: Home },
-      { path: "wallpapers", Component: Wallpapers },
-      { path: "favoritos", Component: Favorites },
       { path: "upload", Component: Upload },
-      { path: "register", Component: Register },
-      { path: "login", Component: Login },
+      {
+        path: "wallpapers",
+        children: [
+          { index: true, Component: Wallpapers },
+          { path: ":shortId", Component: WallpaperDetailPage },
+        ],
+      },
     ],
   },
 ]);

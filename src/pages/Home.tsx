@@ -4,9 +4,9 @@ import { WallpaperMosaic } from "@/features/wallpaper/components/WallpaperMosaic
 
 export default function HomePage() {
   return (
-    <div className="-mt-16">
+    <div className="mt-16">
       <div className="-z-10 absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgb(3_227_184/.2),transparent,transparent)] from-primary/20 via-transparent to-transparent" />
-      <div className="relative overflow-hidden mb-10 pt-16">
+      <div className="relative overflow-hidden mb-10">
         <div className="relative container mx-auto px-4 pt-12">
           <div className="text-center mb-10">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">

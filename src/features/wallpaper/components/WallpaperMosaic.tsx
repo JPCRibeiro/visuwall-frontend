@@ -4,6 +4,8 @@ import { MOSAIC_ROWS, MOSAIC_TOTAL } from "../constants";
 import { WallpaperMosaicSkeleton } from "./WallpaperMosaicSkeleton";
 import { useState } from "react";
 import { ErrorState } from "@/components/ErrorState";
+import { Link } from "react-router";
+import { cn } from "@/lib/utils";
 
 export function WallpaperMosaic() {
   const { data, isLoading, isError, refetch } = useWallpapers();
@@ -13,6 +15,7 @@ export function WallpaperMosaic() {
   if (isError) return <ErrorState onRetry={() => refetch()} />;
 
   const wallpapers = data || [];
+
   const items = wallpapers.slice(0, MOSAIC_TOTAL);
   const allLoaded = items.length > 0 && loadedCount >= items.length;
 
@@ -30,8 +33,9 @@ export function WallpaperMosaic() {
       {rows.map((row, i) => (
         <div key={i} className="flex gap-2">
           {row.map((w) => (
-            <article
+            <Link
               key={w.id}
+              to={`/wallpapers/${w.shortId}`}
               className="flex-1 aspect-16/10 overflow-hidden rounded-md bg-white/5"
             >
               <img
@@ -40,11 +44,12 @@ export function WallpaperMosaic() {
                 loading="eager"
                 onLoad={countOne}
                 onError={countOne}
-                className={`h-full w-full object-cover transition-opacity duration-500 ${
-                  allLoaded ? "opacity-100" : "opacity-0"
-                }`}
+                className={cn(
+                  "h-full w-full object-cover transition-opacity duration-500",
+                  allLoaded ? "opacity-100" : "opacity-0",
+                )}
               />
-            </article>
+            </Link>
           ))}
         </div>
       ))}
