@@ -12,7 +12,7 @@ export function ErrorState({
   onRetry,
 }: Props) {
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center gap-3 px-6 text-center">
+    <div className="flex min-h-[60vh] h-full flex-col items-center justify-center gap-3 px-6 text-center">
       <ImageOff className="h-10 w-10 text-white" strokeWidth={1.5} />
       <div className="space-y-1">
         <p className="text-base font-medium text-white">{title}</p>
