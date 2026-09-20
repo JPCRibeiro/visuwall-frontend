@@ -6,12 +6,10 @@ import { queryClient } from "./lib/queryClient";
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-    <div>
       <Header />
-      <main className="mt-16">
+      <main className="min-h-full">
         <Outlet />
       </main>
-    </div>
     </QueryClientProvider>
   );
 }

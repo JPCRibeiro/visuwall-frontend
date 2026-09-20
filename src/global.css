@@ -31,3 +31,15 @@
 .scrollbar-thin::-webkit-scrollbar-track {
   background: transparent;
 }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body, #root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
