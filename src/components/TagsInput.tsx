@@ -43,7 +43,7 @@ export function TagsInput({
         <button
           type="button"
           onClick={addTag}
-          className="h-12 px-4 bg-zinc-800/50 hover:bg-zinc-700 rounded-md border border-zinc-700/50"
+          className="h-12 px-4 bg-zinc-800/50 hover:bg-zinc-700 rounded-md border border-zinc-700/50 cursor-pointer"
         >
           <Plus className="w-4 h-4" color="white" />
         </button>
