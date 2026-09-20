@@ -5,7 +5,7 @@ const SKELETON_HEIGHTS = [
 
 export function WallpaperGallerySkeleton() {
   return (
-    <div className="columns-2 md:columns-3 xl:columns-4 gap-3">
+    <div className="columns-2 md:columns-3 xl:columns-4 gap-3 px-7">
       {SKELETON_HEIGHTS.map((h, i) => (
         <div
           key={i}

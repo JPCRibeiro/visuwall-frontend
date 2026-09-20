@@ -3,13 +3,14 @@ import type { WallpaperSummaryResponse } from "@/types";
 import { MOSAIC_ROWS, MOSAIC_TOTAL } from "../constants";
 import { WallpaperMosaicSkeleton } from "./WallpaperMosaicSkeleton";
 import { useState } from "react";
+import { ErrorState } from "@/components/ErrorState";
 
 export function WallpaperMosaic() {
-  const { data, isLoading, isError } = useWallpapers();
+  const { data, isLoading, isError, refetch } = useWallpapers();
   const [loadedCount, setLoadedCount] = useState(0);
 
   if (isLoading) return <WallpaperMosaicSkeleton />;
-  if (isError) return <p>Erro ao carregar imagens</p>;
+  if (isError) return <ErrorState onRetry={() => refetch()} />;
 
   const wallpapers = data || [];
   const items = wallpapers.slice(0, MOSAIC_TOTAL);

@@ -1,11 +1,12 @@
+import { ErrorState } from "@/components/ErrorState";
 import { useWallpapers } from "../api/queries";
 import { WallpaperGallerySkeleton } from "./WallpaperGallerySkeleton";
 
 export function WallpaperGallery() {
-  const { data, isLoading, isError } = useWallpapers();
+  const { data, isLoading, isError, refetch } = useWallpapers();
 
   if (isLoading) return <WallpaperGallerySkeleton />; 
-  if (isError) return <p>Erro ao carregar imagens</p>;
+  if (isError) return <ErrorState onRetry={() => refetch()} />;
 
   const wallpapers = data || [];
 
