@@ -5,9 +5,11 @@ import { SkeletonBar } from "@/components/Skeleton";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useParams } from "react-router";
+import { useDocumentTitle } from "@/lib/hooks/useDocumentTitle";
 
 export default function WallpaperDetailPage() {
   const { shortId } = useParams();
+  useDocumentTitle(`${shortId} | VisuWall`);
   const {
     data: wallpaper,
     isLoading,
