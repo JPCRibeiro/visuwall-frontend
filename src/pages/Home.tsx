@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Images, Star, Upload } from "lucide-react";
 import { WallpaperMosaic } from "@/features/wallpaper/components/WallpaperMosaic";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="-mt-16">
       <div className="-z-10 absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgb(3_227_184/.2),transparent,transparent)] from-primary/20 via-transparent to-transparent" />

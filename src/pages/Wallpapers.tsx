@@ -2,7 +2,7 @@ import { Images } from "lucide-react";
 import PageTitle from "@/components/PageTitle";
 import { WallpaperGallery } from "@/features/wallpaper/components/WallpaperGallery";
 
-export default function Wallpapers() {
+export default function WallpapersPage() {
   return (
     <div className="gap-4 flex flex-col pb-8">
       <PageTitle
