@@ -52,3 +52,10 @@ export type LoginRequest = {
   email: string;
   password: string;
 }
+
+export type UserResponse = {
+  id: string;
+  email: string;
+  username: string;
+  createdAt: string;
+}

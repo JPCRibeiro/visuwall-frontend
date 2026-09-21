@@ -1,6 +1,8 @@
+import { useIsSignedIn } from "@/lib/api/useSession";
 import { useAuthStore } from "@/store/auth";
 import type { LoginRequest, RegisterRequest } from "@/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { meRequest } from "./requests";
 
 export function useLogin() {
   const login = useAuthStore((s) => s.login);
@@ -23,5 +25,15 @@ export function useLogout() {
 
   return useMutation({
     mutationFn: () => logout(),
+  });
+}
+
+export function useMe() {
+  const isSignedIn = useIsSignedIn();
+
+  return useQuery({
+    queryKey: ["me"],
+    queryFn: meRequest,
+    enabled: isSignedIn,
   });
 }

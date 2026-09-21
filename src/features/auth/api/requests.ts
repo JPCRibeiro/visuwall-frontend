@@ -1,8 +1,9 @@
-import { publicApi } from "@/lib/api/client";
+import { api, publicApi } from "@/lib/api/client";
 import type {
   AccessTokenResponse,
   LoginRequest,
   RegisterRequest,
+  UserResponse,
 } from "@/types";
 
 export async function registerRequest({
@@ -37,4 +38,9 @@ export async function loginRequest({
 
 export async function logoutRequest(): Promise<void> {
   await publicApi.post("/api/auth/logout");
+}
+
+export async function meRequest(): Promise<UserResponse> {
+  const { data } = await api.get<UserResponse>("/api/users/me");
+  return data;
 }

@@ -1,29 +1,47 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import NavItems from "./NavItems";
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./Button";
+import { useAuthStatus, useIsSignedIn } from "@/lib/api/useSession";
+import { useMe } from "@/features/auth/api/queries";
 
 const GLASS_STYLE =
   "border-zinc-900 bg-[rgb(19_19_19/75%)] backdrop-blur-[6px] shadow-[inset_0_0_0_0px_rgba(31,31,31,.66),0_0_0px_rgba(0,0,0,.75),0_0_2px_rgba(0,0,0,.75)]";
 
 export default function Header() {
+  const status = useAuthStatus();
+  const isSignedIn = useIsSignedIn();
+  const me = useMe();
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const navigate = useNavigate();
+  const pathname = location.pathname;
+  const isHomePage = pathname === "/";
+  const isLogin = pathname === "/login";
+  const isRegister = pathname === "/cadastro";
+  const isAuthPage = isLogin || isRegister;
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    if (isAuthPage) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
     handleScroll();
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isAuthPage]);
 
-  const isHeaderSolid = !isHomePage || isScrolled;
+  let isHeaderSolid = false;
+
+  if (isHomePage) {
+    isHeaderSolid = isScrolled;
+  } else if (!isAuthPage) {
+    isHeaderSolid = true;
+  }
 
   return (
     <header
@@ -35,7 +53,7 @@ export default function Header() {
       <div
         className={cn(
           "items-center flex h-full px-4 justify-between",
-          !isHomePage ? "" : "container mx-auto",
+          !isHomePage && !isAuthPage ? "" : "container mx-auto",
         )}
       >
         <div className="flex-row flex items-center gap-3">
@@ -44,12 +62,20 @@ export default function Header() {
               VisuWall
             </span>
           </Link>
-          {!isHomePage && <NavItems />}
+          {!isHomePage && !isAuthPage && <NavItems />}
         </div>
         <div>
-          <Button>
-            Entrar
-          </Button>
+          {status === "loading" ? (
+            <div className="h-9 w-24" />
+          ) : isSignedIn ? (
+            <div className="flex items-center gap-2">
+              <span className="text-white">{me.data?.username}</span>
+            </div>
+          ) : isLogin ? (
+            <Button onClick={() => navigate("/cadastro")}>Criar conta</Button>
+          ) : (
+            <Button onClick={() => navigate("/login")}>Entrar</Button>
+          )}
         </div>
       </div>
     </header>
