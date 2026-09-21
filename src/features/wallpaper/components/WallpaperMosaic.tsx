@@ -34,7 +34,7 @@ export function WallpaperMosaic() {
         <div key={i} className="flex gap-2">
           {row.map((w) => (
             <Link
-              key={w.id}
+              key={w.shortId}
               to={`/wallpapers/${w.shortId}`}
               className="flex-1 aspect-16/10 overflow-hidden rounded-md bg-white/5"
             >

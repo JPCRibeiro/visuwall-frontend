@@ -13,15 +13,15 @@ export function WallpaperGallery() {
 
   return (
     <div className="columns-2 md:columns-3 xl:columns-4 gap-3 px-7">
-      {wallpapers.map((wallpaper) => (
+      {wallpapers.map((w) => (
         <Link
-          key={wallpaper.id}
-          to={`/wallpapers/${wallpaper.shortId}`}
+          key={w.shortId}
+          to={`/wallpapers/${w.shortId}`}
           className="mb-3 block break-inside-avoid"
         >
           <img
-            key={wallpaper.id}
-            src={wallpaper.thumbUrl}
+            key={w.shortId}
+            src={w.thumbUrl}
             alt=""
             loading="lazy"
             className="w-full rounded-md transition-transform duration-300"
