@@ -1,13 +1,13 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 
 export const BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:8080';
 
-export interface ApiErrorField {
+export type ApiErrorField = {
   field: string;
   message: string;
 }
 
-export interface ApiErrorBody {
+export type ApiErrorBody = {
   timestamp: string;
   status: number;
   detail?: string;
@@ -52,6 +52,7 @@ export function toApiError(error: unknown): ApiError {
 const config = {
   baseURL: BASE_URL,
   timeout: 15000,
+  withCredentials: true,
 };
 
 export const publicApi = axios.create(config);
@@ -61,3 +62,5 @@ api.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => Promise.reject(toApiError(error)),
 );
+
+export type RetriableConfig = InternalAxiosRequestConfig & { _retried?: boolean };

@@ -18,7 +18,6 @@ export type UploadWallpaperRequest = {
 };
 
 export type WallpaperResponse = {
-  id: string;
   shortId: string;
   originalUrl: string;
   thumbUrl: string;
@@ -26,15 +25,30 @@ export type WallpaperResponse = {
   tags: string[];
   width: number;
   height: number;
-  userId: string;
   authorName: string;
   createdAt: string;
 };
 
 export type WallpaperSummaryResponse = {
-  id: string;
   shortId: string;
   thumbUrl: string;
   width: number;
   height: number;
 };
+
+export type AccessTokenResponse = {
+  accessToken: string;
+  tokenType: string;
+  expiresIn: number;
+}
+
+export type RegisterRequest = {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export type LoginRequest = {
+  email: string;
+  password: string;
+}
