@@ -18,6 +18,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient.ts";
 import { RequireAuth, RequireGuest } from "./pages/(protected)/ProtectedRoute.tsx";
 import { registerAuthInterceptors } from "./lib/api/auth.ts";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
           { path: "upload", Component: Upload },
         ],
       },
+      { path: "*", Component: NotFoundPage },
     ],
   },
 ]);
