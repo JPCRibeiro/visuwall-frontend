@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 
 export default function FavoritesPage() {
   return (
-    <div>
+    <div className="mt-16">
       <PageTitle
         Icon={Star}
         title="Favoritos"
