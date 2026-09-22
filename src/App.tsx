@@ -2,7 +2,7 @@ import { Outlet, ScrollRestoration } from "react-router";
 import Header from "./components/Header";
 import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
-import { useAuthStatus } from "./lib/api/useSession";
+import { useAuthStatus } from "./features/auth/hooks/useSession";
 import { useAuthStore } from "./store/auth";
 
 export default function App() {

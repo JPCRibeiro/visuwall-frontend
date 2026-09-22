@@ -1,4 +1,4 @@
-import { useIsSignedIn } from "@/lib/api/useSession";
+import { useIsSignedIn } from "../hooks/useSession";
 import { useAuthStore } from "@/store/auth";
 import type { LoginRequest, RegisterRequest } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
