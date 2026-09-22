@@ -16,9 +16,10 @@ import LoginPage from "./pages/(auth)/Login.tsx";
 import RegisterPage from "./pages/(auth)/Register.tsx";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient.ts";
-import { RequireAuth, RequireGuest } from "./pages/(protected)/ProtectedRoute.tsx";
 import { registerAuthInterceptors } from "./lib/api/auth.ts";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import RequireGuest from "./features/auth/guards/RequireGuest.tsx";
+import RequireAuth from "./features/auth/guards/RequireAuth.tsx";
 
 const router = createBrowserRouter([
   {
