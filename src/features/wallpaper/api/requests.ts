@@ -1,4 +1,4 @@
-import { publicApi } from "@/lib/api/client";
+import { api, publicApi } from "@/lib/api/client";
 import type {
   UploadWallpaperRequest,
   WallpaperResponse,
@@ -15,7 +15,7 @@ export async function uploadWallpaper({ file, category, tags }: UploadWallpaperR
     formData.append("tags", tags.join(","));
   }
 
-  const { data } = await publicApi.post<WallpaperResponse>("/api/wallpapers", formData);
+  const { data } = await api.post<WallpaperResponse>("/api/wallpapers", formData);
 
   return data;
 }
