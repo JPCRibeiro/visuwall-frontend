@@ -202,7 +202,7 @@ export function WallpaperAside({
               <SkeletonBar className="mt-1 h-4 w-32" />
             ) : (
               <span className="text-sm font-medium text-white">
-                Usuário desconhecido
+                {wallpaper?.authorName}
               </span>
             )}
           </div>
