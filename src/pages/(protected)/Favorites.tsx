@@ -1,14 +1,14 @@
+import PageTitle from "@/components/PageTitle";
 import { Star } from "lucide-react";
-import PageTitle from "../../components/PageTitle";
 
-export default function Favorites() {
-  return(
+export default function FavoritesPage() {
+  return (
     <div>
       <PageTitle
-        Icon={Star} 
-        title="Favoritos" 
+        Icon={Star}
+        title="Favoritos"
         description="Wallpapers curtidos por você"
       />
     </div>
-  )
+  );
 }

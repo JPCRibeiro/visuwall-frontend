@@ -20,6 +20,7 @@ import { registerAuthInterceptors } from "./lib/api/auth.ts";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import RequireGuest from "./features/auth/guards/RequireGuest.tsx";
 import RequireAuth from "./features/auth/guards/RequireAuth.tsx";
+import FavoritesPage from "./pages/(protected)/Favorites.tsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
         Component: RequireAuth,
         children: [
           { path: "upload", Component: Upload },
+          { path: "favoritos", Component: FavoritesPage }
         ],
       },
       { path: "*", Component: NotFoundPage },
