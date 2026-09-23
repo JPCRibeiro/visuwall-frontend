@@ -6,6 +6,7 @@ import { Button } from "./Button";
 import { useMe } from "@/features/auth/api/queries";
 import { UserDropdown } from "@/features/auth/components/UserDropdown";
 import { useAuthStatus, useIsSignedIn } from "@/features/auth/hooks/useSession";
+import UserDropdownSkeleton from "@/features/auth/components/UserDropdownSkeleton";
 
 const GLASS_STYLE =
   "border-zinc-900 bg-[rgb(19_19_19/75%)] backdrop-blur-[6px] shadow-[inset_0_0_0_0px_rgba(31,31,31,.66),0_0_0px_rgba(0,0,0,.75),0_0_2px_rgba(0,0,0,.75)]";
@@ -68,15 +69,15 @@ export default function Header() {
           {!isHomePage && !isAuthPage && <NavItems />}
         </div>
         <div>
-          {status === "loading" ? (
-            <div className="h-9 w-24" />
-          ) : isSignedIn ? (
-            <UserDropdown username={username ?? ""} />
-          ) : isLogin ? (
-            <Button onClick={() => navigate("/cadastro")}>Criar conta</Button>
-          ) : (
-            <Button onClick={() => navigate("/login")}>Entrar</Button>
-          )}
+          {status === "loading" || me.isLoading ? (
+  <UserDropdownSkeleton />
+) : isSignedIn ? (
+  <UserDropdown username={username ?? ""} />
+) : isLogin ? (
+  <Button onClick={() => navigate("/cadastro")}>Criar conta</Button>
+) : (
+  <Button onClick={() => navigate("/login")}>Entrar</Button>
+)}
         </div>
       </div>
     </header>

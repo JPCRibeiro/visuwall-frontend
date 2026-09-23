@@ -2,15 +2,20 @@ import { LogOut  } from "lucide-react";
 import { useLogout } from "../api/queries";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-interface UserDropdownProps {
+type UserDropdownProps = {
   username: string;
 }
 
 function getInitials(username: string): string {
-  const parts = username.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return "?";
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return (parts[0][0] + parts[1][0]).toUpperCase();
+  return (
+    username
+      ?.trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((p) => p.charAt(0))
+      .join("")
+      .toUpperCase() || "?"
+  );
 }
 
 export function UserDropdown({ username }: UserDropdownProps) {
